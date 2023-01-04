@@ -4,18 +4,13 @@ pragma solidity 0.7.1;
 import "@openzeppelin/SafeMath.sol";
 
 /**
- * @title CAT Silver - CATSv1
+ * @title CAT Silver - CATS ver 0.1
  *
  * @dev this is a pausable ERC20 using controlled Burn/Mint
  * w/ a SupplyController. By implementing CAT Silver
  * this contract also includes external methods for setting
  * a new implementation contract for the Proxy.
  *
- * NOTE: The storage defined here will actually be held in the Proxy
- * contract and all calls to this contract should be made through
- * the proxy, including admin actions done as owner or supplyController.
- * Any call to transfer against this contract should fail
- * with insufficient funds since no tokens will be issued there.
  */
 contract CATS1 {
 
@@ -75,11 +70,11 @@ contract CATS1 {
 
     // FEE CONTROLLER DATA
     // fee decimals is only set for informational purposes.
-    // 1 feeRate = .000001 oz of gold
+    // 1 feeRate = .000001 oz of silver
     uint8 public constant feeDecimals = 6;
 
     // feeRate is measured in 100th of a basis point (parts per 1,000,000)
-    // ex: a fee rate of 200 = 0.02% of an oz of gold
+    // ex: a fee rate of 200 = 0.02% of an oz of silver
     uint256 public constant feeParts = 1000000;
     uint256 public feeRate;
     address public feeController;
@@ -170,6 +165,13 @@ contract CATS1 {
      * the fee controller and fee recipient.
      * this serves as the constructor for the proxy but compiles to the
      * memory model of the Implementation contract.
+     *
+     * NOTE: The storage defined here will actually be held in the Proxy
+     * contract and all calls to this contract should be made through
+     * the proxy, including admin actions done as owner or supplyController.
+     * Any call to transfer against this contract should fail
+     * with insufficient funds since no tokens will be issued there.
+     *
      */
     function initialize() public {
         require(!initialized, "already initialized");
@@ -366,7 +368,7 @@ contract CATS1 {
      * This sends the CATS tokens that this contract add holding to the owner.
      * Note: this is not affected by freeze constraints.
      */
-    function reclaimPAXG() external onlyOwner {
+    function reclaimCATS() external onlyOwner {
         uint256 _balance = balances[this];
         balances[this] = 0;
         balances[owner] = balances[owner].add(_balance);
@@ -728,7 +730,7 @@ contract CATS1 {
     }
 }
 /**
-* @title CAT Silver - CATSv1
+* @end CAT Silver - CATS ver 0.1
 * this code is inspired by PAXG & other commodity stables >  
 * github.com/paxosglobal/paxos-gold-contract/blob/master/contracts/PAXGImplementation.sol
 */
