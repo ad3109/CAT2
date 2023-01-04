@@ -5,10 +5,12 @@ import "@openzeppelin/SafeMath.sol";
 
 /**
  * @title CAT Silver - CATSv1
- * @dev this is a Pausable ERC20 w/ Burn/Mint
- * controlled w/ a SupplyController. By implementing CATS
+ *
+ * @dev this is a pausable ERC20 using controlled Burn/Mint
+ * w/ a SupplyController. By implementing CAT Silver
  * this contract also includes external methods for setting
  * a new implementation contract for the Proxy.
+ *
  * NOTE: The storage defined here will actually be held in the Proxy
  * contract and all calls to this contract should be made through
  * the proxy, including admin actions done as owner or supplyController.
@@ -725,3 +727,8 @@ contract CATS1 {
         return _value.mul(feeRate).div(feeParts);
     }
 }
+/**
+* @title CAT Silver - CATSv1
+* this code is inspired by PAXG & other commodity stables >  
+* github.com/paxosglobal/paxos-gold-contract/blob/master/contracts/PAXGImplementation.sol
+*/
