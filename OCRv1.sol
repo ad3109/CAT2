@@ -691,7 +691,7 @@ contract OffchainAggregator is Owned, OffchainAggregatorBilling, AggregatorV2V3I
         r.observers,
         r.rawReportContext
       );
-      // Emit these for backwards compatability with offchain consumers
+      // Emit these for backwards compatability w/ offchain consumer data
       // that only support legacy events
       emit NewRound(
         r.hotVars.latestAggregatorRoundId,
