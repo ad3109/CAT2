@@ -10,11 +10,10 @@ import "./OffchainAggregatorBilling.sol";
 import "./TypeAndVersionInterface.sol";
 
 /**
-  * @notice Onchain verification of reports from the offchain reporting protocol
-
-  * @dev For details on its operation, see the offchain reporting protocol design
-  * @dev doc, which refers to this contract as simply the "contract".
+  * This code produces onchain verification reports from an offchain reporting protocol
+  * @dev For details: https://docs.chain.link/architecture-overview/off-chain-reporting/ 
 */
+
 contract OffchainAggregator is Owned, OffchainAggregatorBilling, AggregatorV2V3Interface, TypeAndVersionInterface {
 
   uint256 constant private maxUint32 = (1 << 32) - 1;
@@ -22,7 +21,9 @@ contract OffchainAggregator is Owned, OffchainAggregatorBilling, AggregatorV2V3I
   // Storing these fields used on the hot path in a HotVars variable reduces the
   // retrieval of all of them to a single SLOAD. If any further fields are
   // added, make sure that storage of the struct still takes at most 32 bytes.
+  
   struct HotVars {
+  
     // Provides 128 bits of security against 2nd pre-image attacks, but only
     // 64 bits against collisions. This is acceptable, since a malicious owner has
     // easier way of messing up the protocol than to find hash collisions.
@@ -30,17 +31,20 @@ contract OffchainAggregator is Owned, OffchainAggregatorBilling, AggregatorV2V3I
     uint40 latestEpochAndRound; // 32 most sig bits for epoch, 8 least sig bits for round
     // Current bound assumed on number of faulty/dishonest oracles participating
     // in the protocol, this value is referred to as f in the design
+    
     uint8 threshold;
+    
     // Chainlink Aggregators expose a roundId to consumers. The offchain reporting
     // protocol does not use this id anywhere. We increment it whenever a new
     // transmission is made to provide callers with contiguous ids for successive
     // reports.
+    
     uint32 latestAggregatorRoundId;
   }
   HotVars internal s_hotVars;
 
-  // Transmission records the median answer from the transmit transaction at
-  // time timestamp
+  // Transmission records median answer from transmit transaction time timestamp
+  
   struct Transmission {
     int192 answer; // 192 bits ought to be enough for anyone
     uint64 timestamp;
@@ -49,6 +53,7 @@ contract OffchainAggregator is Owned, OffchainAggregatorBilling, AggregatorV2V3I
 
   // incremented each time a new config is posted. This count is incorporated
   // into the config digest, to prevent replay attacks.
+  
   uint32 internal s_configCount;
   uint32 internal s_latestConfigBlockNumber; // makes it easier for offchain systems
                                              // to extract config from logs.
@@ -72,6 +77,7 @@ contract OffchainAggregator is Owned, OffchainAggregatorBilling, AggregatorV2V3I
    * @param _decimals answers are stored in fixed-point format, with this many digits of precision
    * @param _description short human-readable description of observable this contract's answers pertain to
    */
+   
   constructor(
     uint32 _maximumGasPrice,
     uint32 _reasonableGasPrice,
