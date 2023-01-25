@@ -47,7 +47,7 @@ abstract contract Proxy {
     function _implementation() internal view virtual returns (address);
 
     /**
-     * @dev Delegates the current call to the address returned by `_implementation()`.
+     * @dev delegates the current call to the address returned by `_implementation()`.
      *
      * This function does not return to its internall call site, it will return directly to the external caller.
      */
@@ -57,7 +57,7 @@ abstract contract Proxy {
     }
 
     /**
-     * @dev Fallback function that delegates calls to the address returned by `_implementation()`. Will run if no other
+     * @dev Fallback function that delegates calls to the address returned by `_implementation()`... this will run if no other
      * function in the contract matches the call data.
      */
     fallback () external payable virtual {
