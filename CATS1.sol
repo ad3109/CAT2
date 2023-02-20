@@ -8,7 +8,7 @@ pragma solidity 0.8.1;
  * @dev this is a pausable ERC20 using controlled Burn/Mint
  * w/ a SupplyController. By implementing CAT Silver
  * this contract also includes external methods for setting
- * a new implementation contract for the Proxy.
+ * a new implementation contract for the Proxy
  *
  */
 contract CATS1 {
