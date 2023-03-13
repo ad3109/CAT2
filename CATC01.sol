@@ -1,12 +1,18 @@
-// SPDX-License-Identifier: MIT
+SPDX-License-Identifier: MIT
 pragma solidity ^0.8.2;
 
 /**
- * @dev Testnet contract set 1M base, 20M supply
+ * @dev Testnet 
+ * Set 1M base
+ * Set 20M supply
+ * Timed dispersed
+ * ERC20 to Cosmos
+ * P2P commodities/annuity
+ * 
  */
 interface IERC20 {
     /**
-     * @dev Returns the amount of tokens in existence.
+     * @dev Returns the amount of tokens in existence
      */
     function totalSupply() external view returns (uint256);
 
