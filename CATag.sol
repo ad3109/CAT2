@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.1;
+pragma solidity 0.8.11;
 
 
 /**
- * @title CAT Silver - CATS ver 0.1
+ * @title CAT Silver - CATag ver 0.1
  *
  * @dev this is a pausable ERC20 using controlled Burn/Mint
  * w/ a SupplyController. By implementing CAT Silver
@@ -30,7 +30,7 @@ contract CATS1 {
     mapping(address => uint256) internal balances;
     uint256 internal totalSupply_;
     string public constant name = "CAT Silver"; // solium-disable-line
-    string public constant symbol = "CATS"; // solium-disable-line uppercase
+    string public constant symbol = "CATag"; // solium-disable-line uppercase
     uint8 public constant decimals = 18; // solium-disable-line uppercase
 
     // ERC20 DATA
@@ -729,7 +729,7 @@ contract CATS1 {
     }
 }
 /**
-* @end CAT Silver - CATS ver 0.1
-* this code is inspired by PAXG & other commodity stables >  
+* @end CAT Silver - CATag ver 0.1
+* this code is inspired by PAXG & other commodity stablecoins >  
 * github.com/paxosglobal/paxos-gold-contract/blob/master/contracts/PAXGImplementation.sol
 */
