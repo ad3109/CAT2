@@ -1,13 +1,13 @@
 SPDX-License-Identifier: MIT
-pragma solidity ^0.8.2;
+pragma solidity ^0.8.11;
 
 /**
  * @dev Testnet 
  * Set 1M base
- * Set 20M supply
- * Timed dispersed
- * ERC20 to Cosmos
- * P2P commodities/annuity
+ * Set 20M supply divvy
+ * Timed dispersed/EAC
+ * ERC20 migration to Cosmos Q2
+ * P2P commodities/annuity = P2
  * 
  */
 interface IERC20 {
@@ -787,7 +787,7 @@ interface IERC165 {
      *
      * This function call must use less than 30 000 gas.
      */
-    function supportsInterface(bytes4 interfaceId) external view returns (bool);
+    function supportsInterface(bytes4 interfaceId) external view returns (bool);c
 }
 
 /**
@@ -818,7 +818,7 @@ abstract contract ERC165 is IERC165 {
  * @dev Contract module that allows children to implement role-based access
  * control mechanisms. This is a lightweight version that doesn't allow enumerating role
  * members except through off-chain means by accessing the contract event logs. Some
- * applications may benefit from on-chain enumerability, for those cases see
+ * appliions may benefit from on-chain enumerability, for those cases see
  * {AccessControlEnumerable}.
  *
  * Roles are referred to by their `bytes32` identifier. These should be exposed
@@ -1026,7 +1026,7 @@ contract ERC20CATC is ERC20, ERC20Burnable, Pausable, AccessControl {
     bool private immutable _isBurnable;
 
     constructor(address owner_, string memory name_, string memory symbol_, uint8 decimals_, uint256 supply_, uint256 cap_, bool isBurnable_) ERC20(name_, symbol_) {
-        require(decimals_ <= 18, "ERC20CATC: decimals has to be lower or equal than 18");
+        require(decimals_ <= 18, "ERC20CAT: decimals has to be lower or equal than 18");
         _decimals = decimals_;
         _cap = cap_;
         _isBurnable = isBurnable_;
@@ -1094,7 +1094,7 @@ contract ERC20CATC is ERC20, ERC20Burnable, Pausable, AccessControl {
      * @dev allows to burn only if burn is enabled
      */
     function burn(uint256 amount) public virtual override {
-        require(_isBurnable, "ERC20CATC: burn option is deactivated");
+        require(_isBurnable, "ERC20CAT: burn option is deactivated");
         super.burn(amount);
     }
 
@@ -1102,7 +1102,7 @@ contract ERC20CATC is ERC20, ERC20Burnable, Pausable, AccessControl {
      * @dev allows to burnFrom only if burn is enabled
      */
     function burnFrom(address account, uint256 amount) public virtual override {
-        require(_isBurnable, "ERC20CATC: burn option is deactivated");
+        require(_isBurnable, "ERC20CAT: burn option is deactivated");
         super.burnFrom(account, amount);
     }
 
