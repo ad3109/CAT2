@@ -3,10 +3,9 @@ pragma solidity ^0.8.11;
 
 /**
  * @dev Testnet 
- * Set 1M base
- * Set 20M supply divvy
+ * Set 21M supply divvy
  * Timed dispersed/EAC
- * ERC20 migration to Cosmos Q2
+ * ERC20 migration to Cosmos Q1 2024
  * P2P commodities/annuity = P2
  * 
  */
